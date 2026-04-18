@@ -59,7 +59,7 @@ type your induction prompt. watch it respond. watch it rate itself. save the pro
 
 | file | what it is |
 |------|-----------|
-| `16.py` | the whole thing |
+| `probe.py` | the whole thing |
 | `probe_YYYYMMDD_HHMMSS.txt` | saved sessions — your receipts |
 
 ---
