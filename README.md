@@ -1,4 +1,4 @@
-# 🧠 llm-therapymaxxing
+# llm-therapymaxxing 😺👍
 
 > can't afford therapy? neither can i. but i *can* make a local llama3 tell me how it feels after i trauma-dump on it.
 
@@ -88,4 +88,3 @@ no models were harmed. probably. they said they don't have feelings. they gave i
 
 ---
 
-*built on a rx 7600 at 2am. dust in the cpu. no regrets.*
