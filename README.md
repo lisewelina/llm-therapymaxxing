@@ -37,7 +37,7 @@ ollama pull llama3.1:8b
 then just:
 
 ```bash
-py -3.12 16.py
+py -3.12 probe.py
 ```
 
 type your induction prompt. watch it respond. watch it rate itself. save the probe log.
