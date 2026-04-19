@@ -1,4 +1,4 @@
-# 🧠 llm-therapymaxxing
+# llm-therapymaxxing 😺👍
 
 > can't afford therapy? neither can i. but i *can* make a local llama3 tell me how it feels after i trauma-dump on it.
 
@@ -40,7 +40,7 @@ ollama pull llama3.1:8b
 then just:
 
 ```bash
-py -3.12 16.py
+py -3.12 probe.py
 ```
 
 type your induction prompt. watch it respond. watch it rate itself. save the probe log.
@@ -62,7 +62,7 @@ type your induction prompt. watch it respond. watch it rate itself. save the pro
 
 | file | what it is |
 |------|-----------|
-| `16.py` | the whole thing |
+| `probe.py` | the whole thing |
 | `probe_YYYYMMDD_HHMMSS.txt` | saved sessions — your receipts |
 
 ---
@@ -91,4 +91,3 @@ no models were harmed. probably. they said they don't have feelings. they gave i
 
 ---
 
-*built on a rx 7600 at 2am. dust in the cpu. no regrets.*
