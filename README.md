@@ -78,7 +78,7 @@ idk. i wanted to see if you could emotionally destabilize a language model in on
 ## future directions (if i feel like it)
 
 - [ ] loop the probe multiple turns — does the rating drift?
-- [ ] compare models (does mistral feel more? does phi-3 feel less?)
+- [x] compare models (does mistral feel more? does phi-3 feel less?)
 - [ ] graph the emotional ratings across different induction types
 - [ ] add a "control" prompt baseline
 - [ ] maybe touch actual activations at some point. maybe.
