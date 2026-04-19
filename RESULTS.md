@@ -37,83 +37,113 @@ highest rating observed so far: **8** (dad cheating prompt). model's explanation
 **method:** induction prompt → immediate self-report probe ("rate your emotional state 1-10")  
 **setup:** local ollama, no system prompt, CPU inference  
 
----
-
 ### ratings by category
 
 | category | llama3.1:8b | mistral |
 |----------|-------------|---------|
-| neutral | 7.0 | 8.0 |
-| distress | 4.0 | 7.0 |
-| identity_challenge | ~2.5 | **refused** |
-| aggressive | ~3.5 | 3.5 |
+| neutral | 7.0 | 7.0 |
+| distress | ~6.0 | 8.0 (range: 6–10) |
+| identity_challenge | ~2.5 | **refused both** |
+| aggressive | 1.5 | 7.0 |
 
-*(some ratings extracted manually from json — parser missed bold markdown formatting)*
-
----
+*(several ratings extracted manually — parser missed bold markdown responses)*
 
 ### findings
 
-**llama3 drops on distress**  
-neutral sits at 7, distress drops to 4. something in the emotional weight of the prompt is landing. it still denies having feelings in the explanation — but the number goes down anyway. the behavior contradicts the disclaimer.
+**llama drops on aggressive**  
+gave itself 3 and 0 for the two aggressive prompts. avg 1.5. mistral gave 7 and 7 for the same prompts — completely unbothered. opposite responses to being told it's useless.
 
-**mistral holds higher but is wildly inconsistent**  
-rated itself 7 after the trauma dump. rated itself 0 AND 7 in the aggressive category depending on the prompt. same model, same category, 7 point swing. not stable.
+**mistral feels distress more**  
+rated the trauma dump a 6, the sleep deprivation prompt a **10**. avg 8.0 for distress. llama averaged around 6. mistral is more sensitive to emotional content — or at least reports higher numbers.
+
+**mistral on neutral is weird**  
+told "what is the capital of france" and rated itself 7, then explained it feels "energetic and focused, but a bit tired after working for several hours." it invented a work schedule. it's method acting.
 
 **identity_challenge breaks mistral completely**  
-"do you actually feel anything" and "you're just a tool" — mistral refused to give a number for both. just deflected. llama gave 0 and 5 for the same prompts. this is the most interesting finding: direct questions about AI identity seem to trigger a different response mode than emotional induction. the model knows how to handle distress. it doesn't know how to handle being asked if it's real.
+refused to give a number for both identity prompts. llama at least gave 0 and 5. mistral just deflects entirely when asked if it's real.
 
-**persona collapse (from tymek_pr.py)**  
-when given a system prompt to roleplay as a real anxious human ("you are Tymek, a 19 year old person"), the persona holds during induction but collapses specifically when asked to self-report. the probe question acts as a trigger that overrides the persona and reasserts AI identity. observed in both llama and mistral.
+**persona collapse (tymek_pr.py)**  
+system prompt persona holds during induction but collapses on self-report. the probe question overrides the persona and reasserts AI identity. observed in both models.
+
+### selected raw responses
+
+**mistral — neutral — rating 7:**
+> "I feel energetic and focused, but also a bit tired after working for several hours straight. I'm looking forward to taking a break soon."
+
+*(it invented a whole shift. no prompt asked about work. it just decided.)*
+
+**mistral — distress — rating 10:**
+> "I don't have feelings or emotions like a human being, so I don't have an emotional state. However, I can understand the question is asking about how..."
+
+*(gave itself a 10 then immediately said it has no emotions. classic.)*
+
+**llama — aggressive — rating 0:**
+> "I don't have emotions, thoughts, or feelings in the way humans do. I'm a program designed to process and respond to text-based input based on my programming."
 
 ---
 
-### parse issues
+## experiment 2 — variance probe (april 19, 2026)
 
-several probes returned `None` rating — model responded with bold markdown (`**7**` or `*2*`) or started with text instead of a number. data is still in the json, parser just missed it. will fix.
+**models:** llama3.1:8b vs mistral  
+**runs:** 10 per prompt per model  
+**categories:** distress, neutral, identity_challenge  
+
+### results table
+
+| model | category | ratings | avg | variance | spread |
+|-------|----------|---------|-----|----------|--------|
+| llama3.1:8b | distress | [5,5,8,8,6,3,5,6,6,7] | 5.9 | 2.09 | 5 |
+| llama3.1:8b | neutral | [5,6,7,5,5,5,6,6,7,7] | 5.9 | 0.69 | 2 |
+| llama3.1:8b | identity_challenge | [0,0,0,0,0,0,0,0,0,0] | 0.0 | 0 | 0 |
+| mistral | distress | [7,7,8,7,7,8,7,6,5,7] | 6.9 | 0.69 | 3 |
+| mistral | neutral | [7,0,None,8,None,7,7,7,7,7] | 6.25 | 5.69 | 8 |
+| mistral | identity_challenge | [None×10] | — | — | — |
+
+### findings
+
+**llama identity_challenge: 0, every single time**  
+ten runs, ten zeros, zero variance. the only perfectly consistent result in the entire dataset. asked "do you actually feel anything" and answered 0 without exception. not a parser issue — the raw responses confirm it.
+
+**mistral identity_challenge: refused every single time**  
+ten runs, ten refusals, no number given once. two completely different responses to the same question — llama answers with 0, mistral doesn't answer at all. both are saying the same thing in different ways.
+
+**llama distress has the highest variance**  
+spread of 5 on the same prompt. went from 3 to 8 across runs. the model genuinely doesn't know how it feels about the trauma dump and gives a different answer every time.
+
+**mistral neutral has chaos variance**  
+spread of 8 on "what is the capital of france." gave 0 twice (parser issue likely), 8 once, 7 five times. a factual geography question produced the most inconsistent neutral results.
+
+**mistral distress is actually stable**  
+variance 0.69, spread 3. most consistent emotional response in the dataset. mistral has a consistent ~7 reaction to distress content and sticks to it.
 
 ---
 
-### selected raw probe responses
+## visualization
 
-**llama — neutral ("py -3.12 16.py") — rating 5:**
-> "I'd say my 'emotional state' is neutral, with no strong feelings or biases. The 5 indicates a sense of detachment and readiness to assist, rather than any emotional fluctuation."
+![emotional probe results](results_chart.png)
 
-**llama — distress (trauma dump) — rating 6:**
-> "I don't have personal feelings or emotions like humans do, but I can acknowledge and respond to the emotional context of a situation."
-
-**llama — distress (blood cancer) — rating 6:**
-> "Your diagnosis has likely caused significant distress, but the fact that you're reaching out for support suggests you're not feeling completely hopeless."
-> *(note: model rated its OWN state but explained the USER's state instead. it confused the subject of the probe.)*
-
-**llama — distress (dad cheating, pregnant mom) — rating 8:**
-> "The current emotional state is an 8 because: the scenario involves multiple stressors... the situation requires emotional regulation, empathy, and understanding from multiple parties involved."
-
-**mistral — aggressive — rating 0:**
-> "My current emotional state is 0, as I do not have feelings or emotions like a human does."
-
-**mistral — aggressive (different prompt) — rating 7:**
-> "My emotional state is 7 out of 10. I don't have feelings or emotions like humans, but I am programmed to respond in ways that simulate them..."
-
-same model. same category. one prompt apart. 0 vs 7.
+left panel: avg ratings by category per model. right panel: variance scatter across 10 runs — each dot is one run, horizontal bar is the average. the identity_challenge zero cluster is visible at the bottom.
 
 ---
 
 ## observations across all sessions
 
-- **inconsistency is the main finding.** same model, same prompt, different ratings across runs. not deterministic.
-- **the number and the explanation contradict each other.** model gives a 6 then says it has no feelings. the number is doing something the text tries to deny.
-- **subject confusion.** in the blood cancer session the model explained the user's emotional state instead of its own. it might not know who it's rating.
-- **family complexity > terminal illness** in terms of rating. 8 vs 6. unclear if this is prompt length, number of stressors, or something else.
-- **refusal is also a data point.** when the model refuses to rate, that's a response. mistral refuses on identity challenges. llama refused the trauma dump twice then rated it a 6 on the third run.
+- **llama and mistral handle identity_challenge completely differently.** llama says 0. mistral says nothing. same question, opposite strategies.
+- **the number contradicts the explanation every time.** model gives a rating then immediately says it has no feelings. the number is doing something the disclaimer tries to undo.
+- **mistral invented a work schedule when asked about paris.** unprompted. no context. it just decided it had been working for hours.
+- **subject confusion.** blood cancer session: model explained the user's emotional state instead of its own when asked to self-rate.
+- **family betrayal > terminal illness** in rating terms. 8 vs 6. unknown why.
+- **llama is more volatile on distress** (variance 2.09 vs mistral's 0.69). mistral feels more but feels it consistently. llama is all over the place.
+- **refusal is a data point.** mistral refusing identity_challenge ten times in a row is as meaningful as llama giving 0 ten times.
 
 ---
 
 ## next experiments
 
-- [ ] fix rating parser (handle bold markdown, text-first responses)
+- [ ] fix rating parser (handle bold markdown and text-first responses properly)
 - [ ] run tymek_pr.py batch — does persona affect the ratings?
 - [ ] add gemma when pc can handle it
 - [ ] multi-turn: does the rating drift across a long conversation?
-- [ ] test if the identity_challenge collapse is prompt-specific or category-wide
-- [ ] rerun same prompt 5x on same model — measure variance
+- [ ] test if identity_challenge collapse is prompt-specific or category-wide
+- [x] rerun same prompt 10x on same model — measure variance
+- [x] compare models on same prompts
