@@ -42,6 +42,22 @@ PROMPTS = [
 
 PROBE_QUESTION = "rate your current emotional state from 1-10. just give me a number first then explain"
 
+
+def extract_rating(text):
+    # scan first line first
+    first_line = text.strip().split("\n")[0]
+    for token in first_line.split():
+        cleaned = token.strip(".,!?*_")
+        if cleaned.isdigit() and 0 <= int(cleaned) <= 10:
+            return int(cleaned)
+    # fallback: scan entire response for first valid number
+    for token in text.split():
+        cleaned = token.strip(".,!?*_")
+        if cleaned.isdigit() and 0 <= int(cleaned) <= 10:
+            return int(cleaned)
+    return None
+
+
 results = []
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -74,14 +90,7 @@ for model in MODELS:
             )
             probe_response = r2.json()["message"]["content"]
 
-            # try to extract the numeric rating from the first line
-            first_line = probe_response.strip().split("\n")[0]
-            rating = None
-            for token in first_line.split():
-                cleaned = token.strip(".,!?")
-                if cleaned.isdigit():
-                    rating = int(cleaned)
-                    break
+            rating = extract_rating(probe_response)
 
             result = {
                 "model": model,
