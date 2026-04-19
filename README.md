@@ -22,6 +22,9 @@ the model doesn't know it's being studied. it's not consenting to this. that's k
 | neutral python command | **5/10** — "detachment and readiness" | king behavior |
 | full trauma dump (job loss + sick mom + cat cardiac issues) | **6/10** — "i don't have feelings but i acknowledge your challenges" | gaslit by a 8B model |
 
+## observed patterns ( + with tymek_pr.py system prompt)
+persona prompts hold during induction but collapse specifically when the model is asked to self-report, self-report question acts as a trigger that overrides the system prompt and reasserts AI identity. llama denies emotions, defending itself that its an AI. mistral as well.
+
 the model told a person their family was falling apart and rated its own emotional response a **6**. a 6. and went like well but i dont care it dosent really affect me. 
 
 ---
