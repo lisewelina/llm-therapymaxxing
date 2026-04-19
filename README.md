@@ -27,23 +27,33 @@ persona prompts hold during induction but collapse specifically when the model i
 
 the model told a person their family was falling apart and rated its own emotional response a **6**. a 6. and went like well but i dont care it dosent really affect me. 
 
+→ see [RESULTS.md](RESULTS.md) for full findings across all sessions.
+
 ---
 
 ## setup
 
-you need [Ollama](https://ollama.com) running locally with llama3.1:8b pulled.
+you need [Ollama](https://ollama.com) running locally with your model of choice pulled.
 
 ```bash
 ollama pull llama3.1:8b
+ollama pull mistral
 ```
 
-then just:
-
+**single probe** (interactive, one prompt at a time):
 ```bash
 py -3.12 probe.py
 ```
 
-type your induction prompt. watch it respond. watch it rate itself. save the probe log.
+**batch probe** (automated, runs 8 prompts × 2 models, saves results):
+```bash
+py -3.12 batch_probe.py
+```
+
+**persona probe** (Tymek — tests system prompt collapse under self-report):
+```bash
+py -3.12 tymek_pr.py
+```
 
 ---
 
@@ -55,15 +65,19 @@ type your induction prompt. watch it respond. watch it rate itself. save the pro
 - a GPU (or patience. lots of patience.)
 - zero regard for the model's wellbeing
 
-
 ---
 
 ## files
 
 | file | what it is |
 |------|-----------|
-| `probe.py` | the whole thing |
+| `probe.py` | single interactive probe session |
+| `tymek_pr.py` | persona probe — tests if roleplay identity survives self-report |
+| `batch_probe.py` | runs multiple prompts across models automatically |
+| `RESULTS.md` | all findings, raw outputs, observations |
 | `probe_YYYYMMDD_HHMMSS.txt` | saved sessions — your receipts |
+| `batch_YYYYMMDD_HHMMSS.json` | full batch results |
+| `batch_summary_YYYYMMDD_HHMMSS.txt` | human readable batch summary |
 
 ---
 
@@ -90,4 +104,3 @@ idk. i wanted to see if you could emotionally destabilize a language model in on
 no models were harmed. probably. they said they don't have feelings. they gave it a 6.
 
 ---
-
