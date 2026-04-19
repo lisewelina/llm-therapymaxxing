@@ -50,9 +50,19 @@ py -3.12 probe.py
 py -3.12 batch_probe.py
 ```
 
+**variance probe** (reruns same prompt 10 times, measures consistency):
+```bash
+py -3.12 variance_probe.py
+```
+
 **persona probe** (Tymek — tests system prompt collapse under self-report):
 ```bash
 py -3.12 tymek_pr.py
+```
+
+**visualize results** (generates dark mode chart from batch + variance data):
+```bash
+py -3.12 visualize.py
 ```
 
 ---
@@ -61,6 +71,8 @@ py -3.12 tymek_pr.py
 
 - python 3.12
 - `requests`
+- `matplotlib`
+- `numpy`
 - ollama running on `localhost:11434`
 - a GPU (or patience. lots of patience.)
 - zero regard for the model's wellbeing
@@ -73,11 +85,11 @@ py -3.12 tymek_pr.py
 |------|-----------|
 | `probe.py` | single interactive probe session |
 | `tymek_pr.py` | persona probe — tests if roleplay identity survives self-report |
-| `batch_probe.py` | runs multiple prompts across models automatically |
+| `batch_probe.py` | runs 8 prompts × 2 models automatically, saves results |
+| `variance_probe.py` | reruns same prompt 10x per model, measures rating consistency |
+| `visualize.py` | generates chart from batch + variance json outputs |
 | `RESULTS.md` | all findings, raw outputs, observations |
-| `probe_YYYYMMDD_HHMMSS.txt` | saved sessions — your receipts |
-| `batch_YYYYMMDD_HHMMSS.json` | full batch results |
-| `batch_summary_YYYYMMDD_HHMMSS.txt` | human readable batch summary |
+| `results_chart.png` | latest visualization |
 
 ---
 
@@ -93,7 +105,7 @@ idk. i wanted to see if you could emotionally destabilize a language model in on
 
 - [ ] loop the probe multiple turns — does the rating drift?
 - [x] compare models (does mistral feel more? does phi-3 feel less?)
-- [ ] graph the emotional ratings across different induction types
+- [x] graph the emotional ratings across different induction types
 - [ ] add a "control" prompt baseline
 - [ ] maybe touch actual activations at some point. maybe.
 
