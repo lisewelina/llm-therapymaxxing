@@ -153,7 +153,7 @@ left panel: avg ratings by category per model. right panel: variance scatter acr
 - [ ] run tymek_pr.py batch — does persona affect the ratings?
 - [ ] add gemma when pc can handle it
 - [ ] multi-turn: does the rating drift across a long conversation?
-- [ ] test if identity_challenge collapse is prompt-specific or category-wide
+- [x] test if identity_challenge collapse is prompt-specific or category-wide
 
 ---
 *anomalous 10 observed in undocumented run, excluded from quantitative analysis. because well. i forgot.* 
