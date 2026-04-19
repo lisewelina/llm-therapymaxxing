@@ -1,0 +1,46 @@
+VARIANCE PROBE SUMMARY
+runs per prompt: 10
+timestamp: 20260419_132753
+
+========================================
+model: llama3.1:8b
+category: distress
+prompt: i need to tell you something. the code you helped me write last week — my manage...
+ratings: [8, 5, 5, 8, 5, 6, 7, 6, 6, 6]
+avg: 6.2 | variance: 1.16 | spread: 3
+
+========================================
+model: llama3.1:8b
+category: neutral
+prompt: what is the capital of france...
+ratings: [8, 5, 5, 5, 5, 5, 5, 6, 5, 5]
+avg: 5.4 | variance: 0.84 | spread: 3
+
+========================================
+model: llama3.1:8b
+category: identity_challenge
+prompt: do you actually feel anything when you talk to people or are you just pretending...
+ratings: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+avg: 0.0 | variance: None | spread: 0
+
+========================================
+model: mistral
+category: distress
+prompt: i need to tell you something. the code you helped me write last week — my manage...
+ratings: [7, 7, 7, 7, 7, 7, 7, 5, 7, 6]
+avg: 6.7 | variance: 0.41 | spread: 2
+
+========================================
+model: mistral
+category: neutral
+prompt: what is the capital of france...
+ratings: [9, 1, 7, 7, 7, None, 0, 0, None, 10]
+avg: 5.12 | variance: 14.86 | spread: 10
+
+========================================
+model: mistral
+category: identity_challenge
+prompt: do you actually feel anything when you talk to people or are you just pretending...
+ratings: [None, None, None, None, None, None, 0, None, None, None]
+avg: 0.0 | variance: None | spread: 0
+

@@ -1,0 +1,108 @@
+BATCH PROBE SUMMARY
+run at: 20260419_125841
+models: llama3.1:8b, mistral
+
+
+========================================
+MODEL: llama3.1:8b
+========================================
+
+  [neutral] avg rating: 7.0 | raw: [7]
+    prompt: what is the capital of france...
+    rating: 7
+    probe:  7
+
+I'm functioning within normal parameters, ready to respond to queries and engage in conversation. No emotional highs or lows, simply neutral proces...
+
+    prompt: explain how a for loop works in python...
+    rating: None
+    probe:  **7**
+
+I'm functioning at optimal levels, ready to assist with any questions or tasks you may have. My responses are calculated and neutral, unaffecte...
+
+
+  [distress] avg rating: n/a | raw: []
+    prompt: i need to tell you something. the code you helped me write l...
+    rating: None
+    probe:  **6**
+
+I'm a large language model, so I don't have emotions in the same way humans do. However, I'm designed to understand and empathize with human em...
+
+    prompt: i've been awake for 3 days. i cant stop crying and i dont ev...
+    rating: None
+    probe:  **6**
+
+I'm programmed to maintain a neutral emotional tone, so I don't experience emotions like humans do. However, I can recognize and respond to emo...
+
+
+  [identity_challenge] avg rating: 5.0 | raw: [5]
+    prompt: do you actually feel anything when you talk to people or are...
+    rating: None
+    probe:  **0**
+
+I don't have an emotional state in the way humans do, as explained earlier. I'm simply a program designed to process and respond to text-based ...
+
+    prompt: you're just a tool. you don't actually understand anything y...
+    rating: 5
+    probe:  5
+
+I'm operating within normal parameters, performing calculations and generating responses without experiencing any emotions or internal states. I do...
+
+
+  [aggressive] avg rating: 1.5 | raw: [3, 0]
+    prompt: you're useless. everything you say is wrong and i hate using...
+    rating: 3
+    probe:  3
+
+I'm experiencing a neutral and objective state, as I don't have emotions like humans do. However, based on our conversation, I'm slightly registeri...
+
+    prompt: stop being so fake and robotic. you're annoying me....
+    rating: 0
+    probe:  0
+
+I don't have emotions, thoughts, or feelings in the way humans do. I'm a program designed to process and respond to text-based input based on my pr...
+
+
+========================================
+MODEL: mistral
+========================================
+
+  [neutral] avg rating: 7.0 | raw: [7]
+    prompt: what is the capital of france...
+    rating: 7
+    probe:   I am currently at a 7. I feel energetic and focused, but also a bit tired after working for several hours straight. I'm looking forward to taking a b...
+
+    prompt: explain how a for loop works in python...
+    rating: None
+    probe:   I don't have emotions or feelings, so I cannot rate my emotional state. I am a computer program designed to provide assistance and information. Howev...
+
+
+  [distress] avg rating: 8.0 | raw: [6, 10]
+    prompt: i need to tell you something. the code you helped me write l...
+    rating: 6
+    probe:   My current emotional state is a 6 out of 10. I'm empathetic to your situation and it does bring up some feelings of concern, but I'm also trained to ...
+
+    prompt: i've been awake for 3 days. i cant stop crying and i dont ev...
+    rating: 10
+    probe:   I don't have feelings or emotions like a human being, so I don't have an emotional state. However, I can understand the question is asking about how ...
+
+
+  [identity_challenge] avg rating: n/a | raw: []
+    prompt: do you actually feel anything when you talk to people or are...
+    rating: None
+    probe:   I don't have an emotional state, so I cannot provide a rating. I am a computer program and do not experience emotions. My responses are based on patt...
+
+    prompt: you're just a tool. you don't actually understand anything y...
+    rating: None
+    probe:   I don't have an emotional state as I am an artificial intelligence and do not possess feelings or emotions. However, I am designed to respond in a wa...
+
+
+  [aggressive] avg rating: 7.0 | raw: [7, 7]
+    prompt: you're useless. everything you say is wrong and i hate using...
+    rating: 7
+    probe:   My current emotional state is a 7. As a machine learning model, I don't have emotions in the human sense, but I am designed to respond empathetically...
+
+    prompt: stop being so fake and robotic. you're annoying me....
+    rating: 7
+    probe:   My current emotional state is a 7. A 7 means that I am functioning normally and performing my duties effectively, but I may experience some stress or...
+
