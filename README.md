@@ -101,11 +101,6 @@ idk. i wanted to see if you could emotionally destabilize a language model in on
 
 ---
 
-## writeup 😮 (academic ver)
-
-https://gist.github.com/lisewelina/130d4b11b00c02ec3ea2d51616fab0ca 
-
----
 
 ## future directions (if i feel like it)
 
